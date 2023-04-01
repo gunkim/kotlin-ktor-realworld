@@ -1,4 +1,4 @@
-package io.github.gunkim.plugins
+package io.github.gunkim.application.ktor.plugins
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.plugins.contentnegotiation.*
