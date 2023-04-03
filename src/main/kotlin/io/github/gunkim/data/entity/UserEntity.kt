@@ -1,6 +1,5 @@
 package io.github.gunkim.data.entity
 
-import io.github.gunkim.data.ArticleEntity
 import io.github.gunkim.data.table.ArticleFavoriteTable
 import io.github.gunkim.data.table.FollowerTable
 import io.github.gunkim.data.table.FollowingTable

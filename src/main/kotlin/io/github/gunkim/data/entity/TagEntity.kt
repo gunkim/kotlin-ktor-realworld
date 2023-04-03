@@ -1,4 +1,4 @@
-package io.github.gunkim.data
+package io.github.gunkim.data.entity
 
 import io.github.gunkim.data.table.TagTable
 import org.jetbrains.exposed.dao.IntEntity

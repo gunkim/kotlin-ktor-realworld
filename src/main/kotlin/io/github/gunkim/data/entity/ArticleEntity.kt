@@ -1,6 +1,5 @@
-package io.github.gunkim.data
+package io.github.gunkim.data.entity
 
-import io.github.gunkim.data.entity.UserEntity
 import io.github.gunkim.data.table.ArticleTable
 import io.github.gunkim.data.table.ArticleTagTable
 import io.github.gunkim.data.table.CommentTable
