@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.*
 
 fun Route.registerUser(createToken: (UUID) -> String) = post("/api/users") {
-    val request = call.receive<RegisterUserRequest>()
+    val request = call.receive<RegisterUserRequest>().user
 
     val createdUser = transaction {
         User.new {
@@ -25,6 +25,11 @@ fun Route.registerUser(createToken: (UUID) -> String) = post("/api/users") {
 
 @Serializable
 data class RegisterUserRequest(
+    val user: RegisterUserBodyRequest
+)
+
+@Serializable
+data class RegisterUserBodyRequest(
     val email: String,
     val username: String,
     val password: String,
