@@ -2,6 +2,7 @@ package io.github.gunkim.application.ktor.plugins
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
+import io.github.gunkim.endpoint.loginUser
 import io.github.gunkim.endpoint.registerUser
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
@@ -19,5 +20,6 @@ fun Application.configureRouting() {
 
     routing {
         registerUser(createToken)
+        loginUser(createToken)
     }
 }
