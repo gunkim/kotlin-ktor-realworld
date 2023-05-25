@@ -36,17 +36,24 @@ data class LoginUserBodyRequest(
 
 @Serializable
 data class LoginUserResponse(
+    val user: LoginUserBodyResponse
+) {
+    constructor(user: User, token: String) : this(
+        LoginUserBodyResponse(
+            user.email,
+            token,
+            user.name,
+            user.bio,
+            user.image
+        )
+    )
+}
+
+@Serializable
+data class LoginUserBodyResponse(
     val email: String,
     val token: String,
     val username: String,
     val bio: String?,
     val image: String?,
-) {
-    constructor(user: User, token: String) : this(
-        user.email,
-        token,
-        user.name,
-        user.bio,
-        user.image
-    )
-}
+)
