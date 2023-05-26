@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm
 import io.github.gunkim.endpoint.getUser
 import io.github.gunkim.endpoint.loginUser
 import io.github.gunkim.endpoint.registerUser
+import io.github.gunkim.endpoint.updateUser
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.routing.*
@@ -26,6 +27,7 @@ fun Application.configureRouting() {
 
         authenticate {
             getUser(createToken)
+            updateUser(createToken)
         }
     }
 }

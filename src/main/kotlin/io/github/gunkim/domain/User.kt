@@ -24,6 +24,21 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
     var createdAt: LocalDateTime by UserTable.createdAt
     var updatedAt: LocalDateTime by UserTable.updatedAt
 
+    fun update(
+        name: String? = null,
+        email: String? = null,
+        password: String? = null,
+        bio: String? = null,
+        image: String? = null
+    ) {
+        name?.let { this.name = it }
+        email?.let { this.email = it }
+        password?.let { this.password = it }
+        bio?.let { this.bio = it }
+        image?.let { this.image = it }
+        updatedAt = LocalDateTime.now()
+    }
+
     companion object : UUIDEntityClass<User>(UserTable)
 }
 
