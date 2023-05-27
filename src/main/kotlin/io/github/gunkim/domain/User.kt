@@ -5,6 +5,7 @@ import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.UUIDTable
 import org.jetbrains.exposed.sql.Column
+import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.SizedIterable
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.datetime
@@ -17,8 +18,8 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
     var password: String by UserTable.password
     var bio: String? by UserTable.bio
     var image: String? by UserTable.image
-    val following: SizedIterable<User> by User.via(FollowingTable.userId, FollowingTable.followingId)
-    val followers: SizedIterable<User> by User.via(FollowerTable.userId, FollowerTable.followerId)
+    var following: SizedIterable<User> by User.via(FollowingTable.userId, FollowingTable.followingId)
+    var followers: SizedIterable<User> by User.via(FollowerTable.userId, FollowerTable.followerId)
     val favoriteArticles: SizedIterable<Article> by Article
         .via(ArticleFavoriteTable.userId, ArticleFavoriteTable.articleId)
     var createdAt: LocalDateTime by UserTable.createdAt
@@ -37,6 +38,11 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
         bio?.let { this.bio = it }
         image?.let { this.image = it }
         updatedAt = LocalDateTime.now()
+    }
+
+    fun follow(target: User) {
+        following = SizedCollection(following + target)
+        target.followers = SizedCollection(target.followers + this)
     }
 
     companion object : UUIDEntityClass<User>(UserTable)
