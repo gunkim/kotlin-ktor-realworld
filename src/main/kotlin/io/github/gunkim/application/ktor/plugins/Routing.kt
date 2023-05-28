@@ -28,6 +28,7 @@ fun Application.configureRouting() {
         authenticate {
             getUser(createToken)
             updateUser(createToken)
+            followUser()
         }
     }
 }
