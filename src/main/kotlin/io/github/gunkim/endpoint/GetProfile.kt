@@ -24,8 +24,7 @@ fun Route.getProfile() = get("/api/profiles/{username}") {
         transaction {
             User.find { UserTable.id eq userId }
                 .firstOrNull()
-                ?.following
-                ?.contains(findUser)
+                ?.hasFollower(findUser)
         }
     } ?: false
 
