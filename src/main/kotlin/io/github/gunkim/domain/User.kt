@@ -45,6 +45,11 @@ class User(id: EntityID<UUID>) : UUIDEntity(id) {
         target.followers = SizedCollection(target.followers + this)
     }
 
+    fun unfollow(target: User) {
+        following = SizedCollection(following - target)
+        target.followers = SizedCollection(target.followers - this)
+    }
+
     fun hasFollower(target: User) = following.contains(target)
 
     override fun equals(other: Any?): Boolean {

@@ -29,6 +29,7 @@ fun Application.configureRouting() {
             getUser(createToken)
             updateUser(createToken)
             followUser()
+            unfollowUser()
         }
     }
 }
